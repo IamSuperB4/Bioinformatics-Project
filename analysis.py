@@ -1,3 +1,23 @@
+
+
+
+
+
+
+
+
+
+'''
+import os
+
+fullGenome = 'Genomes\Genomes\Dipodomys_ordii_genomic.fna'
+proteins = 'Genomes\Proteins\Dipodomys_ordii_protein.fna'
+
+
+os.system("muscle -profile -in1 " + proteins + " -in2 " + fullGenome + " -out /Genomes/Aligned combinedAlignment.fasta -maxmb 15000")
+
+
+
 from Bio.Align.Applications import MuscleCommandline
 from io import StringIO
 
@@ -9,7 +29,9 @@ alignment = AlignIO.read("Genomes\Genomes\Dipodomys_ordii_genomic.fna", "fasta")
 print(alignment)
 
 
-'''
+
+
+
 input_sequences = "hiv_protease_sequences_w_wt.fasta"
 output_alignment = "output_alignment.fasta"
 
@@ -20,14 +42,14 @@ def align_v1 (Fasta):
     print(MultipleSeqAlignment)
 
 align_v1(input_sequences)
-'''
 
 
 
 
 
 
-'''
+
+
 def parse_fasta_file(file, removeGaps):
     """Return a dict of {id:gene_seq} pairs based on the sequences in the input FASTA file
     input_file -- a file handle for an input fasta file
@@ -94,7 +116,6 @@ for dogElement in allDogSequences:
         for key in dogElement:
             for key2 in humanElement:
                 result = compareSequences(dogElement[key], humanElement[key2])
-
 
 #print(parsed_seqs)
 '''
