@@ -1,54 +1,7 @@
-
-
-
-
-
-
-
-
-
-'''
-import os
-
-fullGenome = 'Genomes\Genomes\Dipodomys_ordii_genomic.fna'
-proteins = 'Genomes\Proteins\Dipodomys_ordii_protein.fna'
-
-
-os.system("muscle -profile -in1 " + proteins + " -in2 " + fullGenome + " -out /Genomes/Aligned combinedAlignment.fasta -maxmb 15000")
-
-
-
-from Bio.Align.Applications import MuscleCommandline
-from io import StringIO
-
-from Bio import AlignIO
-
-
-#muscle_exe = "D:\Users\seaha\Downloads\muscle5.1.win64.exe" #specify the location of your muscle exe file
-alignment = AlignIO.read("Genomes\Genomes\Dipodomys_ordii_genomic.fna", "fasta")
-print(alignment)
-
-
-
-
-
-input_sequences = "hiv_protease_sequences_w_wt.fasta"
-output_alignment = "output_alignment.fasta"
-
-def align_v1 (Fasta): 
-    muscle_cline = MuscleCommandline(muscle_exe, input=Fasta, out=output_alignment)
-    stdout, stderr = muscle_cline()
-    MultipleSeqAlignment = AlignIO.read(output_alignment, "fasta") 
-    print(MultipleSeqAlignment)
-
-align_v1(input_sequences)
-
-
-
-
-
-
-
+from __future__ import division
+from fractions import Fraction
+from nose.tools import assert_equal, assert_almost_equal
+from dnds import dnds, pnps, substitutions, dnds_codon, dnds_codon_pair, syn_sum, translate
 
 def parse_fasta_file(file, removeGaps):
     """Return a dict of {id:gene_seq} pairs based on the sequences in the input FASTA file
@@ -79,43 +32,15 @@ def parse_fasta_file(file, removeGaps):
     parsed_seqs[curr_seq_id] = ''.join(curr_seq)
     return parsed_seqs
 
-def compareSequences(largeSequence, smallSequence):
-    for a in pairwise2.align.globalxx(largeSequence, smallSequence):
-        print(format_alignment(*a))
+dipodomys1 = 'Genomes\Aligned\Dipodomys_D(1A) dopamine receptor_aligned.fna'
 
+dipodomys1File = open(dipodomys1)
 
-#Normally this would be determined
-#by user input via argparse. Hard-coded for now
-dogChromosome = 'Genomes/Dog/sequence0.fasta'
-humanGene = 'Genomes/Human/gene0.fna'
-#dogChromosome = 'Genomes/test/dogtest.fasta'
-#humanGene = 'Genomes/test/humantest.fna'
+dipodomys1_parsed = parse_fasta_file(dipodomys1File, False)
 
-#dogFile = open(dogChromosome)
-#humanFile = open(humanGene)
+dipodomys1List = [];
 
-#parsed_dog = parse_fasta_file(dogFile, True)
-#parsed_human = parse_fasta_file(humanFile, True)
+for key in dipodomys1_parsed:
+    dipodomys1List.append(dipodomys1_parsed[key])
 
-allDogSequences = []
-allHumanSequences = []
-
-for i in (0,37):
-    for j in (0,4):
-        dogChromosome = 'Genomes/Dog/sequence' + str(i) + '.fasta'
-        humanGene = 'Genomes/Human/gene' + str(j) + '.fna'
-
-        dogFile = open(dogChromosome)
-        humanFile = open(humanGene)
-
-        allDogSequences.append(parse_fasta_file(dogFile, True))
-        allHumanSequences.append(parse_fasta_file(dogFile, True))
-
-for dogElement in allDogSequences:
-    for humanElement in allHumanSequences:
-        for key in dogElement:
-            for key2 in humanElement:
-                result = compareSequences(dogElement[key], humanElement[key2])
-
-#print(parsed_seqs)
-'''
+print(dnds(dipodomys1List[0], dipodomys1List[1]))
