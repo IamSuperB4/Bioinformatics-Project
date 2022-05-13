@@ -160,7 +160,11 @@ def dnds(seq1, seq2):
     dn = -(3 / 4) * log(1 - (4 * pn / 3))
     ds = -(3 / 4) * log(1 - (4 * ps / 3))
     logging.info('dN: {}\t\tdS: {}'.format(round(dn, 3), round(ds, 3)))
-    return dn / ds
+    
+    if ds != 0:
+        return abs(dn / ds)
+    else:
+        return -10000000
 
 
 if __name__ == '__main__':
