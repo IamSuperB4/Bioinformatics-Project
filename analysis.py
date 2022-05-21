@@ -5,7 +5,6 @@ from dnds import dnds, pnps, substitutions, dnds_codon, dnds_codon_pair, syn_sum
 import os
 
 
-
 def parse_fasta_file(file, removeGaps):
     """Return a dict of {id:gene_seq} pairs based on the sequences in the input FASTA file
     input_file -- a file handle for an input fasta file
@@ -40,18 +39,13 @@ def parse_fasta_file(file, removeGaps):
 directory = 'Genomes\Aligned'
 
 listOfFiles = []
- 
+
 # iterate over files in that directory
 for filename in os.listdir(directory):
     f = os.path.join(directory, filename)
     # checking if it is a file
     if os.path.isfile(f):
         listOfFiles.append(f)
-
-
-
-
-#dipodomys1 = 'Genomes\Aligned\Dipodomys_D(1A) dopamine receptor_aligned.fna'
 
 for direct in listOfFiles:
     file = open(direct)
@@ -64,14 +58,5 @@ for direct in listOfFiles:
     for key in parsed_file:
         parsed_file_List.append(parsed_file[key])
 
-
-    i = 0
-    j = 0
-    for f1 in parsed_file_List:
-        for  f2 in parsed_file_List:
-            if (("-" not in f1) and ("-" not in f2)) and i != j:
-                #print(parsed_file_List[0] + "\n" + parsed_file_List[1] + "\n\n\n")
-                print(fileName, "\n", round((dnds(f1, f2)), 3))
-                
-            j += 1
-        i += 1
+    
+    print(fileName, "\n", round((dnds(parsed_file_List[0], parsed_file_List[1])), 3))
