@@ -4,6 +4,12 @@ from nose.tools import assert_equal, assert_almost_equal
 from dnds import dnds, pnps, substitutions, dnds_codon, dnds_codon_pair, syn_sum, translate
 import os
 
+from Bio.Phylo.PAML import codeml
+
+
+
+
+
 
 def parse_fasta_file(file, removeGaps):
     """Return a dict of {id:gene_seq} pairs based on the sequences in the input FASTA file
@@ -36,7 +42,7 @@ def parse_fasta_file(file, removeGaps):
 
 
 # assign directory
-directory = 'Genomes\Aligned'
+directory = 'Genomes\ACTN3_Aligned'
 
 listOfFiles = []
 
@@ -53,10 +59,9 @@ for direct in listOfFiles:
     
     parsed_file = parse_fasta_file(file, False)
 
-    parsed_file_List = []
+    parsed_file_list = []
 
     for key in parsed_file:
-        parsed_file_List.append(parsed_file[key])
+        parsed_file_list.append(parsed_file[key])
 
-    
-    print(fileName, "\n", round((dnds(parsed_file_List[0], parsed_file_List[1])), 3))
+    print(fileName, "\n", codeml.read(parsed_file_list[0]))
