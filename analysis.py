@@ -4,6 +4,11 @@ from nose.tools import assert_equal, assert_almost_equal
 from dnds import dnds, pnps, substitutions, dnds_codon, dnds_codon_pair, syn_sum, translate
 import os
 
+from Bio.Phylo.PAML import codeml
+
+
+
+
 
 
 def parse_fasta_file(file, removeGaps):
@@ -37,10 +42,10 @@ def parse_fasta_file(file, removeGaps):
 
 
 # assign directory
-directory = 'Genomes\Aligned'
+directory = 'Genomes\ACTN3_Aligned'
 
 listOfFiles = []
- 
+
 # iterate over files in that directory
 for filename in os.listdir(directory):
     f = os.path.join(directory, filename)
@@ -48,30 +53,15 @@ for filename in os.listdir(directory):
     if os.path.isfile(f):
         listOfFiles.append(f)
 
-
-
-
-#dipodomys1 = 'Genomes\Aligned\Dipodomys_D(1A) dopamine receptor_aligned.fna'
-
 for direct in listOfFiles:
     file = open(direct)
     fileName = os.path.basename(direct)
     
     parsed_file = parse_fasta_file(file, False)
 
-    parsed_file_List = []
+    parsed_file_list = []
 
     for key in parsed_file:
-        parsed_file_List.append(parsed_file[key])
+        parsed_file_list.append(parsed_file[key])
 
-
-    i = 0
-    j = 0
-    for f1 in parsed_file_List:
-        for  f2 in parsed_file_List:
-            if (("-" not in f1) and ("-" not in f2)) and i != j:
-                #print(parsed_file_List[0] + "\n" + parsed_file_List[1] + "\n\n\n")
-                print(fileName, "\n", round((dnds(f1, f2)), 3))
-                
-            j += 1
-        i += 1
+    print(fileName, "\n", codeml.read(parsed_file_list[0]))

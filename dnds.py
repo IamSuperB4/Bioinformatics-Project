@@ -113,15 +113,36 @@ def substitutions(seq1, seq2):
 
 
 def clean_sequence(seq):
-    """Clean up provided sequence by removing whitespace."""
+    """Clean up provided sequence by removing whitespace. And removes gaps"""
     return seq.replace(' ', '')
+    
+    
 
+def remove_gaps(seq1, seq2):
+    # corner case for if sequences are not divisable by 3
+    if(len(seq1) % 3 != 0 and len(seq2) % 3 != 0):
+        print("Issue removing gaps")
+        return seq1, seq2
+
+    index = 0
+    
+    while (index != len(seq1) - 1 and index != len(seq2) - 1):
+        if(index >= len(seq1) or index >= len(seq2)):
+            break
+        if("-" in seq1[index] or "-" in seq2[index]):
+            seq1 = seq1[0:index:] + seq1[index+1::]
+            seq2 = seq2[0:index:] + seq2[index+1::]
+            index -= 1
+
+        index += 1
+    return seq1, seq2
 
 def pnps(seq1, seq2):
     """Main function to calculate pN/pS between two DNA sequences."""
     # Strip any whitespace from both strings
     seq1 = clean_sequence(seq1)
     seq2 = clean_sequence(seq2)
+    
     # Check that both sequences have the same length
     assert len(seq1) == len(seq2)
     # Check that sequences are codons
@@ -146,6 +167,11 @@ def dnds(seq1, seq2):
     # Strip any whitespace from both strings
     seq1 = clean_sequence(seq1)
     seq2 = clean_sequence(seq2)
+    #print("Before seq1: ", seq1)
+    #print("Before seq2: ", seq2)
+    seq1, seq2 = remove_gaps(seq1, seq2)
+    #print("After seq1: ", seq1)
+    #print("After seq2: ", seq2)
     # Check that both sequences have the same length
     assert len(seq1) == len(seq2)
     # Check that sequences are codons
