@@ -45,10 +45,11 @@ def parse_fasta_file(file, removeGaps):
 
 
 # assign directory
-type_of_gene = "dopamine receptor"
+type_of_gene = "ACTN3"
 
-fromDirectory = 'Genomes/Genes'
-intoDirectory = 'Genomes/DopamineGenes/'
+fromDirectory = 'Genomes\Genes'
+intoDirectory = 'Genomes\ACTN3_Genes'
+
 
 listOfFiles = []
  
