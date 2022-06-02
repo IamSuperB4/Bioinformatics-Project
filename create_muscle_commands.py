@@ -1,7 +1,7 @@
 import os
 
-fromDirectory = 'Genomes/DopamineGenes'
-intoDirectory = 'Genomes/Aligned/'
+fromDirectory = 'Genomes/ACTN3_Genes/' # put / at the end of string
+intoDirectory = 'Genomes/ACTN3_Aligned/' # put / at the end of string
 pathToMuscleExe = './muscle5.1.win64.exe'
 
 listOfFiles = []

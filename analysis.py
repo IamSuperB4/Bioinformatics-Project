@@ -38,7 +38,7 @@ def parse_fasta_file(file, removeGaps):
 
 
 # assign directory
-directory = 'Genomes\Aligned'
+directory = 'Genomes/ACTN3_Aligned/'
 
 
 
