@@ -52,21 +52,25 @@ intoDirectory = 'Genomes/DopamineGenes/'
 
 listOfFiles = []
  
-# iterate over files in that directory
+# iterate over files in  directory
 for filename in os.listdir(fromDirectory):
-    f = os.path.join(fromDirectory, filename)
-    # checking if it is a file
+    f = os.path.join(fromDirectory, filename) # entire path to file
+    
+    # check if it is a file
     if os.path.isfile(f):
-        listOfFiles.append(f)
+        listOfFiles.append(f) # add file to list of files to parse
 
 for direct in listOfFiles:
     file = open(direct)
-    fileName = os.path.basename(direct)
+    fileName = os.path.basename(direct) # pull file name from path
     
-    parsed_file = parse_fasta_file(file, False)
+    parsed_file = parse_fasta_file(file, False) # parse fasta file, convert to dictionary
 
+    # loop through all genes in parsed fasta file
     for key in parsed_file:
+        # only look at the gene we want to research
         if(type_of_gene in key):
+            # pull information to create file name for species' gene
             protein_name = get_protein_name(key)
             genus_name = fileName.rsplit('_',2)[0]
             species_name = fileName.rsplit('_',2)[1]
@@ -74,9 +78,9 @@ for direct in listOfFiles:
             new_line = key.replace('lcl', '>lcl_' + species_name)
             new_file_name = genus_name + '_' + protein_name + ".fna"
 
-            
             print('Creating File: ' + new_file_name)
 
+            # Create (if file doesn't exist) or append file with gene pulled from file
             with open(intoDirectory + new_file_name, 'a+') as newFile:
                 newFile.write(new_line + '\n')
                 newFile.write(parsed_file[key] + '\n')
@@ -105,6 +109,7 @@ for direct in listOfFiles:
 
     file.close();
 
+    # if parsed file does not have a pair of genes in it
     if(len(parsed_file) != 2):
         print("Deleting File: " + fileName + "")
         os.remove(direct)
