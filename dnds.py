@@ -124,17 +124,34 @@ def remove_gaps(seq1, seq2):
         print("Issue removing gaps")
         return seq1, seq2
 
-    index = 0
-    
-    while (index != len(seq1) - 1 and index != len(seq2) - 1):
-        if(index >= len(seq1) or index >= len(seq2)):
+    x = 0
+    while (x != len(seq1) - 1 and x != len(seq2) - 1):
+        if(x >= len(seq1) or x >= len(seq2)):
             break
-        if("-" in seq1[index] or "-" in seq2[index]):
-            seq1 = seq1[0:index:] + seq1[index+1::]
-            seq2 = seq2[0:index:] + seq2[index+1::]
-            index -= 1
+        if(seq1[x] == "N" or seq1[x + 1] == "N" or seq1[x + 2] == "N" or seq2[x] == "N" or seq2[x + 1] == "N" or seq2[x + 2] == "N" or 
+        seq1[x] == "R" or seq1[x + 1] == "R" or seq1[x + 2] == "R" or seq2[x] == "R" or seq2[x + 1] == "R" or seq2[x + 2] == "R" or 
+        seq1[x] == "Y" or seq1[x + 1] == "Y" or seq1[x + 2] == "Y" or seq2[x] == "Y" or seq2[x + 1] == "Y" or seq2[x + 2] == "Y"):
+            seq1 = seq1[0:x:] + seq1[x+3::]
+            seq2 = seq2[0:x:] + seq2[x+3::]
+            x -= 3
+        
+        if(seq1[x] == "-" or seq1[x + 1] == "-" or seq1[x + 2] == "-" or seq2[x] == "-" or seq2[x + 1] == "-" or seq2[x + 2] == "-"):
+            seq1 = seq1[0:x:] + seq1[x+3::]
+            seq2 = seq2[0:x:] + seq2[x+3::]
+            x -= 3
+        x += 3
+    # index = 0
+    # while (index != len(seq1) - 1 and index != len(seq2) - 1):
+    #     if(index >= len(seq1) or index >= len(seq2)):
+    #         break
 
-        index += 1
+    #     if("-" in seq1[index] or "-" in seq2[index]):
+    #         seq1 = seq1[0:index:] + seq1[index+1::]
+    #         seq2 = seq2[0:index:] + seq2[index+1::]
+    #         index -= 1
+
+    #     index += 1
+
     return seq1, seq2
 
 def pnps(seq1, seq2):
@@ -165,13 +182,30 @@ def dnds(seq1, seq2):
     Cantor 1967.
     """
     # Strip any whitespace from both strings
+    #print("Before seq1: ", len(seq1))
+    #print("Before seq2: ", len(seq2))
+
     seq1 = clean_sequence(seq1)
     seq2 = clean_sequence(seq2)
     #print("Before seq1: ", seq1)
     #print("Before seq2: ", seq2)
+
+    # Make the sequence length a multiple of three
+    if(len(seq1)%3 == 1 or len(seq2)%3 == 1):
+        seq1 = seq1[:-1]
+        seq2 = seq2[:-1]
+    
+    if(len(seq1)%3 == 2 or len(seq2)%3 == 2):
+        seq1 = seq1[:-2]
+        seq2 = seq2[:-2]
+    
+
     seq1, seq2 = remove_gaps(seq1, seq2)
-    #print("After seq1: ", seq1)
-    #print("After seq2: ", seq2)
+
+    #print("After seq1: ", len(seq1))
+    #print("After seq2: ", len(seq2))
+
+
     # Check that both sequences have the same length
     assert len(seq1) == len(seq2)
     # Check that sequences are codons

@@ -7,10 +7,6 @@ import os
 from Bio.Phylo.PAML import codeml
 
 
-
-
-
-
 def parse_fasta_file(file, removeGaps):
     """Return a dict of {id:gene_seq} pairs based on the sequences in the input FASTA file
     input_file -- a file handle for an input fasta file
@@ -42,7 +38,9 @@ def parse_fasta_file(file, removeGaps):
 
 
 # assign directory
-directory = 'Genomes\ACTN3_Aligned'
+directory = 'Genomes/ACTN3_Aligned/'
+
+
 
 listOfFiles = []
 
@@ -64,4 +62,6 @@ for direct in listOfFiles:
     for key in parsed_file:
         parsed_file_list.append(parsed_file[key])
 
-    print(fileName, "\n", codeml.read(parsed_file_list[0]))
+    #print(fileName, "\n", dnds(parsed_file_list[0], parsed_file_list[1]))
+    #print(parsed_file_list)
+    print(fileName, "\n", round((dnds(parsed_file_list[0], parsed_file_list[1])), 3))
