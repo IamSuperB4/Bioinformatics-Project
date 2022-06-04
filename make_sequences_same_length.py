@@ -31,8 +31,8 @@ def parse_fasta_file(file, removeGaps):
 
 
 # assign directory
-fromDirectory = 'Genomes/DopamineGenes/'
-intoDirectory = 'Genomes/DopamineGenesSameSizeSequences/'
+fromDirectory = 'Genomes/Aligned/'
+intoDirectory = 'Genomes/AlignedDopamineGenesSameSizeSequences/'
 
 listOfFiles = []
     
@@ -82,7 +82,7 @@ for direct in listOfFiles:
         newFileString += new_line + '\n' + parsed_file[key] + '\n'
 
         i += 1
-    
-    print("Creating File: " + fileName)
+
+    print("Creating File: " + intoDirectory + fileName)
     with open(intoDirectory + fileName, 'a+') as newFile:
         newFile.write(newFileString)
