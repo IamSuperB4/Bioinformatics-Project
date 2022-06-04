@@ -10,7 +10,7 @@ from Bio import SeqIO
 import os
 
 def main():
-    fromDirectory = 'Genomes/AlignedDopamineGenesSameSizeSequences'
+    fromDirectory = 'Genomes/CombinedDopamineFileSameLength/'
     intoDirectory = 'Genomes/AlignedPhy/'
 
     listOfFiles = []

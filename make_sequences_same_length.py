@@ -31,8 +31,8 @@ def parse_fasta_file(file, removeGaps):
 
 
 # assign directory
-fromDirectory = 'Genomes/Aligned/'
-intoDirectory = 'Genomes/AlignedDopamineGenesSameSizeSequences/'
+fromDirectory = 'Genomes/CombineDopamineGeneFiles'
+intoDirectory = 'Genomes/CombinedDopamineFileSameLength/'
 
 listOfFiles = []
     
@@ -54,34 +54,20 @@ for direct in listOfFiles:
     file.close()
 
     newFileString = ""
-    lenOfFileOne = 0
-    lenOfFileTwo = 0
+    lenOfLongestSeq = 0
 
-    i = 0
     for key in parsed_file:
+        if len(parsed_file[key]) > lenOfLongestSeq:
+            lenOfLongestSeq = len(parsed_file[key])
 
-        if i == 0:
-            lenOfFileOne = len(parsed_file[key])
-        elif i == 1:
-            lenOfFileTwo = len(parsed_file[key])
-            
-        i += 1
-
-    i = 0
     for key in parsed_file:
         new_line = key.replace('lcl', '>lcl')
 
-        if i == 0 and lenOfFileTwo > lenOfFileOne:
-            addBlanks = '-' * (lenOfFileTwo - lenOfFileOne)
-            parsed_file[key] = parsed_file[key] + addBlanks
-
-        elif i == 1 and lenOfFileOne > lenOfFileTwo:
-            addBlanks = '-' * (lenOfFileOne - lenOfFileTwo)
+        if len(parsed_file[key]) < lenOfLongestSeq:
+            addBlanks = '-' * (lenOfLongestSeq - len(parsed_file[key]))
             parsed_file[key] = parsed_file[key] + addBlanks
             
         newFileString += new_line + '\n' + parsed_file[key] + '\n'
-
-        i += 1
 
     print("Creating File: " + intoDirectory + fileName)
     with open(intoDirectory + fileName, 'a+') as newFile:
