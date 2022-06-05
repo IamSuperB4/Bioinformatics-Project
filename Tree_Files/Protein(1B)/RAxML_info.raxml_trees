@@ -1,9 +1,9 @@
 
 
-IMPORTANT WARNING: Sequences lcl_dingo| and lcl_famili are exactly identical
+IMPORTANT WARNING: Sequences dingo| and famili are exactly identical
 
 
-IMPORTANT WARNING: Sequences lcl_leo|NC and lcl_pardus are exactly identical
+IMPORTANT WARNING: Sequences Panthera_leo - Lion and Panthera_pardus - Leopard are exactly identical
 
 IMPORTANT WARNING
 Found 2 sequences that are exactly identical to other sequences in the alignment.
@@ -31,7 +31,7 @@ Akifumi S. Tanabe (NRIFS)
 
 Alignment has 1482 distinct alignment patterns
 
-Proportion of gaps and completely undetermined characters in this alignment: 29.57%
+Proportion of gaps and completely undetMustela_erminea - Stoat (weasel)d characters in this alignment: 29.57%
 
 RAxML rapid bootstrapping and subsequent ML search
 

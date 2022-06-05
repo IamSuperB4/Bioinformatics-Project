@@ -48,7 +48,7 @@ def parse_fasta_file(file, removeGaps):
 type_of_gene = "ACTN3"
 
 fromDirectory = 'Genomes/Genes/' # put / at the end of string
-intoDirectory = 'Genomes/ACTN3_Genes/' # put / at the end of string 
+intoDirectory = 'Genomes/ACTN3_Genes/' # put / at the end of string
 
 listOfFiles = []
  
