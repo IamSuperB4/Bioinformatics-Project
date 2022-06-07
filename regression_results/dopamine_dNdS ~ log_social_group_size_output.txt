@@ -1,0 +1,32 @@
+using final_popsize.csv
+"dopamine_dNdS ~ log_social_group_size"
+unchanged data
+
+Model Summary:
+
+                             OLS Regression Results
+==============================================================================
+Dep. Variable:          dopamine_dNdS   R-squared:                       0.047
+Model:                            OLS   Adj. R-squared:                 -0.006
+Method:                 Least Squares   F-statistic:                    0.8950
+Date:                Mon, 06 Jun 2022   Prob (F-statistic):              0.357
+Time:                        20:19:49   Log-Likelihood:                0.53901
+No. Observations:                  20   AIC:                             2.922
+Df Residuals:                      18   BIC:                             4.913
+Df Model:                           1
+Covariance Type:            nonrobust
+=========================================================================================
+                            coef    std err          t      P>|t|      [0.025      0.975]
+-----------------------------------------------------------------------------------------
+Intercept                 0.3481      0.071      4.916      0.000       0.199       0.497
+log_social_group_size    -0.0460      0.049     -0.946      0.357      -0.148       0.056
+==============================================================================
+Omnibus:                        4.607   Durbin-Watson:                   2.233
+Prob(Omnibus):                  0.100   Jarque-Bera (JB):                2.924
+Skew:                           0.925   Prob(JB):                        0.232
+Kurtosis:                       3.297   Cond. No.                         2.30
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+end of code

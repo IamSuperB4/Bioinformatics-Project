@@ -1,0 +1,31 @@
+using final_popsize.csv
+negative control files
+
+Model Summary:
+
+                             OLS Regression Results
+==============================================================================
+Dep. Variable:             ACTN3_dNdS   R-squared:                       0.007
+Model:                            OLS   Adj. R-squared:                 -0.075
+Method:                 Least Squares   F-statistic:                   0.08819
+Date:                Mon, 06 Jun 2022   Prob (F-statistic):              0.772
+Time:                        20:18:14   Log-Likelihood:                 11.723
+No. Observations:                  14   AIC:                            -19.45
+Df Residuals:                      12   BIC:                            -18.17
+Df Model:                           1
+Covariance Type:            nonrobust
+=========================================================================================
+                            coef    std err          t      P>|t|      [0.025      0.975]
+-----------------------------------------------------------------------------------------
+Intercept                 0.0873      0.042      2.064      0.061      -0.005       0.179
+log_social_group_size    -0.0088      0.029     -0.297      0.772      -0.073       0.055
+==============================================================================
+Omnibus:                        6.444   Durbin-Watson:                   2.235
+Prob(Omnibus):                  0.040   Jarque-Bera (JB):                4.117
+Skew:                           1.327   Prob(JB):                        0.128
+Kurtosis:                       3.137   Cond. No.                         2.60
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+end of code
